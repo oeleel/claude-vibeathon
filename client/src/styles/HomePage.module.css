@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+
+.korean {
+  font-family: 'Nanum Brush Script', cursive;
+  font-weight: 700;
+}
+
+.english {
+  font-family: 'Nanum Brush Script', cursive;
+  /* Keep English modern/clean */
+}
+
 .container {
   min-height: 100vh;
   display: flex;
