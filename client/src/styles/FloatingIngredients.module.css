@@ -36,14 +36,12 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  transition: transform 0.2s ease, filter 0.2s ease;
-  animation: float 3s ease-in-out infinite;
-  /* Prevent position changes - only visual transforms */
-  will-change: transform;
+  transition: filter 0.2s ease;
+  /* No transitions on transform or position to prevent glitches */
 }
 
 .ingredient:hover {
-  transform: scale(1.1) translateY(-5px);
+  transform: scale(1.05);
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
   z-index: 100;
 }
@@ -59,14 +57,14 @@
 }
 
 .ingredient.dragOver {
-  transform: scale(1.2);
+  transform: scale(1.15);
   filter: drop-shadow(0 0 20px rgba(76, 175, 80, 0.8));
   animation: pulse 0.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1.2); }
-  50% { transform: scale(1.25); }
+  0%, 100% { transform: scale(1.15); }
+  50% { transform: scale(1.2); }
 }
 
 .ingredient.held {
@@ -76,10 +74,11 @@
 }
 
 .ingredient.plate {
-  transform: scale(1.3);
+  transform: scale(1.15);
   z-index: 50;
   cursor: pointer;
   position: relative;
+  /* Plates don't float - they stay stable */
 }
 
 .ingredient.plate::after {
@@ -100,21 +99,14 @@
 }
 
 .ingredient.plate:hover {
-  transform: scale(1.4) translateY(-5px);
+  transform: scale(1.2);
 }
 
 .ingredient.plate:hover::after {
   opacity: 1;
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(-10px) translateX(0);
-  }
-}
+/* Removed float animation to prevent position glitches */
 
 .ingredientEmoji {
   font-size: 3rem;

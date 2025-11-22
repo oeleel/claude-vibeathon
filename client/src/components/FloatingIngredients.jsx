@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useGame } from '../context/GameContext';
 import { useIngredientSharing } from '../hooks/useIngredientSharing';
 import { getIngredient } from '../utils/ingredientData';
@@ -65,14 +65,9 @@ function FloatingIngredients({ ingredients, onCombine, onServe }) {
   const neighbors = getPlayerNeighbors();
   const isTwoPlayer = room?.players.length === 2;
 
-  return (
-    <div className={styles.container}>
-      {isTwoPlayer && (
-        <div className={styles.twoPlayerHint}>
-          <p>2-Player Mode: Drag ingredients left or right to share!</p>
-        </div>
-      )}
-      {ingredients.map(ingredient => {
+  // Memoize ingredient rendering to prevent unnecessary re-renders
+  const renderedIngredients = useMemo(() => {
+    return ingredients.map(ingredient => {
         const ingredientData = getIngredient(ingredient.ingredientId);
         const isHeld = ingredient.heldBy && ingredient.heldBy !== playerId;
         const isDragging = draggingId === ingredient.id;
@@ -130,7 +125,17 @@ function FloatingIngredients({ ingredients, onCombine, onServe }) {
             )}
           </div>
         );
-      })}
+      });
+  }, [ingredients, draggingId, dragOverId, playerId, disassembleDish]);
+
+  return (
+    <div className={styles.container}>
+      {isTwoPlayer && (
+        <div className={styles.twoPlayerHint}>
+          <p>2-Player Mode: Drag ingredients left or right to share!</p>
+        </div>
+      )}
+      {renderedIngredients}
     </div>
   );
 }
