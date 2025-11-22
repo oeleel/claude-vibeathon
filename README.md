@@ -22,6 +22,12 @@ Players connect from separate computers and collaborate to complete Korean dish 
 - npm or yarn
 - Modern web browser (Chrome, Firefox, Safari, Edge)
 
+### 📚 Documentation
+
+- [`ENV_VARIABLES.md`](./ENV_VARIABLES.md) - Environment variable configuration
+- [`DEPLOYMENT.md`](./DEPLOYMENT.md) - Full deployment guide for Render
+- [`TESTING.md`](./TESTING.md) - Comprehensive testing checklist
+
 ### Installation
 
 1. **Install Server Dependencies**

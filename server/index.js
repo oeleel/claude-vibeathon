@@ -7,16 +7,27 @@ import GameLogic from './gameLogic.js';
 
 const app = express();
 const httpServer = createServer(app);
+
+// Configure CORS for production and development
+const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:5173", // Vite default port
+    origin: CLIENT_URL,
     methods: ["GET", "POST"],
     credentials: true
   }
 });
 
-app.use(cors());
+app.use(cors({
+  origin: CLIENT_URL,
+  credentials: true
+}));
 app.use(express.json());
+
+// Health check endpoint for Render
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
 
 const roomManager = new RoomManager();
 const gameLogic = new GameLogic();

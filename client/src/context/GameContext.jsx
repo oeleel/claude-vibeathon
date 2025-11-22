@@ -22,7 +22,9 @@ export const GameProvider = ({ children }) => {
 
   // Initialize socket connection
   useEffect(() => {
-    const newSocket = io('http://localhost:3001', {
+    // Use environment variable for API URL, fallback to localhost for development
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+    const newSocket = io(apiUrl, {
       transports: ['websocket'],
       reconnection: true,
       reconnectionDelay: 1000,
