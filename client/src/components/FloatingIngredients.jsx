@@ -44,10 +44,21 @@ function FloatingIngredients({ ingredients, onCombine, onServe }) {
   };
 
   const handleDoubleClick = (ingredient) => {
+    console.log('Double-clicked ingredient:', ingredient);
+    console.log('Combined with:', ingredient.combinedWith);
+    console.log('disassembleDish function:', disassembleDish);
+    
     // Only allow disassembly if it's a plate (has combined ingredients)
     const combinedCount = (ingredient.combinedWith || []).length;
-    if (combinedCount > 0 && disassembleDish) {
-      disassembleDish(ingredient.id);
+    if (combinedCount > 0) {
+      if (disassembleDish) {
+        console.log('Calling disassembleDish with id:', ingredient.id);
+        disassembleDish(ingredient.id);
+      } else {
+        console.error('disassembleDish function not available!');
+      }
+    } else {
+      console.log('Not a combined dish, cannot disassemble');
     }
   };
 

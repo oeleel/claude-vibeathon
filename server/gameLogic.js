@@ -1,4 +1,5 @@
 import { getAllIngredientIds, getRecipesByDifficulty, getAllRecipes, getRecipeById, getIngredientById } from './recipes.js';
+import { getRandomSafePosition, constrainPosition } from './utils/boundaries.js';
 
 class GameLogic {
   constructor() {
@@ -41,11 +42,12 @@ class GameLogic {
     
     shuffled.forEach((ingredientId, idx) => {
       const playerId = room.players[idx % playerCount].id;
+      const position = getRandomSafePosition();
       playerIngredients[playerId].push({
         id: `ingredient_${Date.now()}_${idx}`,
         ingredientId,
-        x: Math.random() * 80 + 10, // 10-90% across screen
-        y: Math.random() * 60 + 20, // 20-80% down screen
+        x: position.x,
+        y: position.y,
         ownerId: playerId, // Who this ingredient belongs to / can see
         combinedWith: [] // array of ingredient IDs this has been combined with
       });

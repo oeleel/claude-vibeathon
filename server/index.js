@@ -5,6 +5,7 @@ import cors from 'cors';
 import { v4 as uuidv4 } from 'uuid';
 import RoomManager from './roomManager.js';
 import GameLogic from './gameLogic.js';
+import { getRandomSafePosition, constrainPosition } from './utils/boundaries.js';
 
 const app = express();
 const httpServer = createServer(app);
@@ -331,8 +332,9 @@ io.on('connection', (socket) => {
     
     // Update owner and randomize position on receiver's screen
     ingredient.ownerId = targetPlayerId;
-    ingredient.x = Math.random() * 80 + 10;
-    ingredient.y = Math.random() * 60 + 20;
+    const newPosition = getRandomSafePosition();
+    ingredient.x = newPosition.x;
+    ingredient.y = newPosition.y;
     
     room.playerIngredients[targetPlayerId].push(ingredient);
 
@@ -395,12 +397,19 @@ io.on('connection', (socket) => {
 
     // Create individual ingredients from the disassembled plate
     allIngredients.forEach((ingId, index) => {
+      // Spread ingredients around the original plate position, but constrain to safe area
+      const offsetX = (index % 3) * 8 - 8; // -8, 0, or +8
+      const offsetY = Math.floor(index / 3) * 6 - 3; // -3, 3, 9, etc
+      const rawX = plateIngredient.x + offsetX;
+      const rawY = plateIngredient.y + offsetY;
+      const safePos = constrainPosition(rawX, rawY);
+      
       const newIngredient = {
         id: uuidv4(),
         ingredientId: ingId,
         ownerId: socket.id,
-        x: (plateIngredient.x + (index * 5)) % 90, // Spread them out a bit
-        y: (plateIngredient.y + (index * 3)) % 90,
+        x: safePos.x,
+        y: safePos.y,
         combinedWith: []
       };
       room.playerIngredients[socket.id].push(newIngredient);
