@@ -1,0 +1,140 @@
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 1.3rem;
+  color: var(--korean-black);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.orderList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.noOrders {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-style: italic;
+}
+
+.orderCard {
+  background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+  border: 2px solid var(--korean-yellow);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s;
+}
+
+.orderCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.dishName {
+  flex: 1;
+}
+
+.nameKR {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--korean-red);
+  margin-bottom: 2px;
+}
+
+.nameEN {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.points {
+  background: var(--korean-green);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.ingredientsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ingredientItem {
+  background: #f0f0f0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.ingredientEmoji {
+  font-size: 1.1rem;
+}
+
+.ingredientName {
+  color: #333;
+  font-weight: 500;
+}
+
+.timerContainer {
+  margin-top: 12px;
+}
+
+.timerBar {
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.timerFill {
+  height: 100%;
+  transition: width 1s linear, background 0.3s;
+}
+
+.timerGreen .timerFill {
+  background: var(--korean-green);
+}
+
+.timerYellow .timerFill {
+  background: var(--warning-yellow);
+}
+
+.timerRed .timerFill {
+  background: var(--danger-red);
+  animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.timerText {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--korean-black);
+}
+

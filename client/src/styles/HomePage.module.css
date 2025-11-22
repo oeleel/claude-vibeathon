@@ -1,0 +1,168 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.content {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.korean {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--korean-red);
+  letter-spacing: 2px;
+}
+
+.english {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--korean-black);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 16px;
+}
+
+.connecting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px;
+  color: #666;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--korean-red);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.modeSelection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.form h2 {
+  text-align: center;
+  color: var(--korean-black);
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.input {
+  padding: 14px 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.input:focus {
+  border-color: var(--korean-red);
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+}
+
+.button {
+  padding: 16px 24px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s;
+}
+
+.primaryButton {
+  background: var(--korean-red);
+  color: white;
+  box-shadow: 0 4px 6px rgba(230, 57, 70, 0.3);
+}
+
+.primaryButton:hover {
+  background: #d62839;
+  box-shadow: 0 6px 12px rgba(230, 57, 70, 0.4);
+}
+
+.secondaryButton {
+  background: var(--korean-blue);
+  color: white;
+  box-shadow: 0 4px 6px rgba(69, 123, 157, 0.3);
+}
+
+.secondaryButton:hover {
+  background: #3a6a88;
+  box-shadow: 0 6px 12px rgba(69, 123, 157, 0.4);
+}
+
+.backButton {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.backButton:hover {
+  background: #d0d0d0;
+}
+
+.buttonIcon {
+  font-size: 1.4rem;
+}
+
+.formButtons {
+  display: flex;
+  gap: 12px;
+}
+
+.formButtons .button {
+  flex: 1;
+}
+
+.footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+  color: #999;
+  font-size: 0.9rem;
+}
+

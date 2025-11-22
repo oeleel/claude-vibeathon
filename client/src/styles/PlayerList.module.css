@@ -1,0 +1,114 @@
+.container {
+  margin: 30px 0;
+}
+
+.title {
+  font-size: 1.4rem;
+  color: var(--korean-black);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.playerGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.playerCard {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.playerCard:hover {
+  border-color: var(--korean-blue);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.currentPlayer {
+  border-color: var(--korean-red);
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+}
+
+.disconnected {
+  opacity: 0.5;
+  border-style: dashed;
+}
+
+.playerInfo {
+  flex: 1;
+}
+
+.playerPosition {
+  font-size: 0.75rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.playerName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--korean-black);
+  margin-bottom: 8px;
+}
+
+.youBadge {
+  font-size: 0.85rem;
+  color: var(--korean-red);
+  font-weight: 700;
+}
+
+.playerBadges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: var(--korean-green);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badgeNotReady {
+  background: #f0f0f0;
+  color: #666;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badgeDisconnected {
+  background: var(--danger-red);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.playerAvatar {
+  font-size: 2.5rem;
+  margin-left: 12px;
+}
+
+.emptySlots {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-style: italic;
+}
+

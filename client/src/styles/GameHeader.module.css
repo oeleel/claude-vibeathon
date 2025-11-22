@@ -1,0 +1,80 @@
+.header {
+  background: white;
+  padding: 16px 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.leftSection,
+.rightSection {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.centerSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--korean-black);
+}
+
+.scoreDisplay {
+  text-align: center;
+}
+
+.scoreLabel {
+  font-size: 0.85rem;
+  color: #666;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.scoreValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--korean-red);
+}
+
+.livesDisplay {
+  display: flex;
+  gap: 8px;
+  font-size: 1.5rem;
+}
+
+.heartFull {
+  animation: heartbeat 1s infinite;
+}
+
+.heartEmpty {
+  opacity: 0.3;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
