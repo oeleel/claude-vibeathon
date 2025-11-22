@@ -36,8 +36,10 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, filter 0.2s ease;
   animation: float 3s ease-in-out infinite;
+  /* Prevent position changes - only visual transforms */
+  will-change: transform;
 }
 
 .ingredient:hover {
@@ -107,10 +109,10 @@
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(0) translateX(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-10px) translateX(0);
   }
 }
 

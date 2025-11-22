@@ -286,6 +286,10 @@ io.on('connection', (socket) => {
       targetIngredient.combinedWith = [];
     }
     
+    // Preserve target's position - make sure it doesn't move!
+    const originalX = targetIngredient.x;
+    const originalY = targetIngredient.y;
+    
     // Add source ingredient
     targetIngredient.combinedWith.push(sourceIngredient.ingredientId);
     
@@ -293,6 +297,10 @@ io.on('connection', (socket) => {
     if (sourceIngredient.combinedWith && sourceIngredient.combinedWith.length > 0) {
       targetIngredient.combinedWith.push(...sourceIngredient.combinedWith);
     }
+    
+    // Ensure position hasn't changed
+    targetIngredient.x = originalX;
+    targetIngredient.y = originalY;
     
     // Remove source ingredient from player's list
     room.playerIngredients[socket.id] = playerIngredients.filter(i => i.id !== sourceId);
