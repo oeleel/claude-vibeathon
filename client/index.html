@@ -5,6 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Korean Kitchen Party 🍜</title>
     <style>
+      .floating-ingredients {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;  /* FIX: You had this empty, set it to 0 */
+        overflow: hidden;
+      }
+
+      .ingredient {
+        position: absolute;
+        width: 60px;
+        height: auto;
+        opacity: 0.4;
+        animation: float-down var(--duration, 15s) linear infinite;
+        animation-delay: var(--delay, 0s);
+        left: var(--left, 50%);
+        top: -100px;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+      }
+
+      @keyframes float-down {
+        0% {
+          transform: translateY(-100px) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.4;
+        }
+        90% {
+          opacity: 0.4;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      #root {
+        position: relative;
+        z-index: 1;
+      }
+      
       * {
         margin: 0;
         padding: 0;
@@ -19,8 +64,27 @@
     </style>
   </head>
   <body>
+    <!-- ADD THIS ENTIRE DIV ⬇️ -->
+    <div class="floating-ingredients">
+      <img src="./ingredients/dumpling.png" class="ingredient" style="--delay: 0s; --duration: 15s; --left: 10%;" alt="">
+      <img src="./ingredients/spring-onion.png" class="ingredient" style="--delay: 2s; --duration: 18s; --left: 20%;" alt="">
+      <img src="./ingredients/shrimp.png" class="ingredient" style="--delay: 1s; --duration: 16s; --left: 30%;" alt="">
+      <img src="./ingredients/cabbage.png" class="ingredient" style="--delay: 3s; --duration: 20s; --left: 40%;" alt="">
+      <img src="./ingredients/gochujang.png" class="ingredient" style="--delay: 0.5s; --duration: 17s; --left: 50%;" alt="">
+      <img src="./ingredients/rice-cakes.png" class="ingredient" style="--delay: 2.5s; --duration: 19s; --left: 60%;" alt="">
+      <img src="./ingredients/rice.png" class="ingredient" style="--delay: 1.5s; --duration: 21s; --left: 70%;" alt="">
+      <img src="./ingredients/egg.png" class="ingredient" style="--delay: 3.5s; --duration: 16s; --left: 80%;" alt="">
+      <img src="./ingredients/spinach.png" class="ingredient" style="--delay: 4s; --duration: 18s; --left: 15%;" alt="">
+      <img src="./ingredients/pork.png" class="ingredient" style="--delay: 0.8s; --duration: 22s; --left: 25%;" alt="">
+      <img src="./ingredients/kimchi.png" class="ingredient" style="--delay: 2.8s; --duration: 17s; --left: 35%;" alt="">
+      <img src="./ingredients/soy-sauce.png" class="ingredient" style="--delay: 1.2s; --duration: 19s; --left: 45%;" alt="">
+      <img src="./ingredients/noodles.png" class="ingredient" style="--delay: 3.2s; --duration: 20s; --left: 55%;" alt="">
+      <img src="./ingredients/carrot.png" class="ingredient" style="--delay: 0.3s; --duration: 16s; --left: 65%;" alt="">
+      <img src="./ingredients/garlic.png" class="ingredient" style="--delay: 2.2s; --duration: 18s; --left: 75%;" alt="">
+    </div>
+    <!-- ⬆️ END OF FLOATING INGREDIENTS -->
+    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-

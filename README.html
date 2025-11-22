@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.23">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>readme</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="README_files/libs/clipboard/clipboard.min.js"></script>
+<script src="README_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="README_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="README_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="README_files/libs/quarto-html/popper.min.js"></script>
+<script src="README_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="README_files/libs/quarto-html/anchor.min.js"></script>
+<link href="README_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="README_files/libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="README_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="README_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="README_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="korean-kitchen-party" class="level1">
+<h1>Korean Kitchen Party 🍜🎮</h1>
+<p>A real-time cooperative cooking game where 2-8 players work together to prepare authentic Korean dishes in a chaotic kitchen environment!</p>
+<section id="game-overview" class="level2">
+<h2 class="anchored" data-anchor-id="game-overview">🎯 Game Overview</h2>
+<p>Players connect from separate computers and collaborate to complete Korean dish orders before time runs out. Pass ingredients between connected “stations”, assemble dishes, and score points as a team!</p>
+<section id="features" class="level3">
+<h3 class="anchored" data-anchor-id="features">Features</h3>
+<ul>
+<li><strong>Real-time Multiplayer</strong>: 2-8 players on separate computers</li>
+<li><strong>Korean Cuisine</strong>: Authentic dishes like Bibimbap, Kimchi Jjigae, Tteokbokki, Japchae, and more</li>
+<li><strong>Cooperative Gameplay</strong>: Pass ingredients to neighbors, work together to complete orders</li>
+<li><strong>Progressive Difficulty</strong>: 10 rounds with increasing complexity</li>
+<li><strong>Team Scoring</strong>: Work together to achieve high scores</li>
+</ul>
+</section>
+</section>
+<section id="quick-start" class="level2">
+<h2 class="anchored" data-anchor-id="quick-start">🚀 Quick Start</h2>
+<section id="prerequisites" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Node.js (v16 or higher)</li>
+<li>npm or yarn</li>
+<li>Modern web browser (Chrome, Firefox, Safari, Edge)</li>
+</ul>
+</section>
+<section id="installation" class="level3">
+<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<ol type="1">
+<li><strong>Install Server Dependencies</strong></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> server</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li><strong>Install Client Dependencies</strong></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> client</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="running-the-game" class="level3">
+<h3 class="anchored" data-anchor-id="running-the-game">Running the Game</h3>
+<p>You need to run both the server and client:</p>
+<p><strong>Terminal 1 - Start the Backend Server:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> server</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Server will run on <code>http://localhost:3001</code></p>
+<p><strong>Terminal 2 - Start the Frontend Client:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> client</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Client will run on <code>http://localhost:5173</code></p>
+</section>
+<section id="playing-locally-with-multiple-players" class="level3">
+<h3 class="anchored" data-anchor-id="playing-locally-with-multiple-players">Playing Locally with Multiple Players</h3>
+<p>To test multiplayer locally, open multiple browser windows/tabs or use different browsers:</p>
+<ol type="1">
+<li>Open <code>http://localhost:5173</code> in multiple browser windows</li>
+<li>In the first window, click “Create Room”</li>
+<li>Share the room code with other windows</li>
+<li>In other windows, click “Join Room” and enter the code</li>
+<li>Once 2+ players are ready, the host can start the game!</li>
+</ol>
+<p><strong>Tip</strong>: Use Chrome’s Incognito mode or different browsers to simulate multiple players on one computer.</p>
+</section>
+</section>
+<section id="how-to-play" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-play">🎮 How to Play</h2>
+<section id="lobby" class="level3">
+<h3 class="anchored" data-anchor-id="lobby">Lobby</h3>
+<ol type="1">
+<li><strong>Create or Join</strong>: Host creates a room and gets a 4-character code, others join with that code</li>
+<li><strong>Ready Up</strong>: Non-host players click “Ready Up”</li>
+<li><strong>Start</strong>: Host starts the game when 2+ players are ready</li>
+</ol>
+</section>
+<section id="gameplay" class="level3">
+<h3 class="anchored" data-anchor-id="gameplay">Gameplay</h3>
+<ol type="1">
+<li><strong>View Orders</strong>: Active Korean dishes appear at the top with required ingredients</li>
+<li><strong>Check Inventory</strong>: See your ingredients at the bottom</li>
+<li><strong>Pass Ingredients</strong>:
+<ul>
+<li>Click to select an ingredient</li>
+<li>Press <code>A</code> or <code>←</code> to pass left</li>
+<li>Press <code>D</code> or <code>→</code> to pass right</li>
+</ul></li>
+<li><strong>Assemble Dishes</strong>:
+<ul>
+<li>Drag ingredients from inventory to the plate</li>
+<li>Or double-click ingredient to add to plate</li>
+<li>Select which dish you’re making from dropdown</li>
+</ul></li>
+<li><strong>Submit</strong>: Click “Submit Dish” when complete</li>
+<li><strong>Complete Orders</strong>: Before the timer runs out!</li>
+</ol>
+</section>
+<section id="scoring" class="level3">
+<h3 class="anchored" data-anchor-id="scoring">Scoring</h3>
+<ul>
+<li>Base points per dish (100-200 depending on difficulty)</li>
+<li>Speed bonus for fast completion (+20%)</li>
+<li>Lose a life if order expires</li>
+<li>Game ends at 0 lives or after 10 rounds</li>
+</ul>
+</section>
+<section id="controls" class="level3">
+<h3 class="anchored" data-anchor-id="controls">Controls</h3>
+<ul>
+<li><strong>Select Ingredient</strong>: Click on ingredient in inventory</li>
+<li><strong>Pass Left</strong>: <code>A</code> or <code>←</code> (Left Arrow)</li>
+<li><strong>Pass Right</strong>: <code>D</code> or <code>→</code> (Right Arrow)</li>
+<li><strong>Add to Plate</strong>: Double-click ingredient or drag to work area</li>
+<li><strong>Remove from Plate</strong>: Click on ingredient in work area</li>
+</ul>
+</section>
+</section>
+<section id="project-structure" class="level2">
+<h2 class="anchored" data-anchor-id="project-structure">📁 Project Structure</h2>
+<pre><code>claude-vibeathon/
+├── server/                    # Backend Node.js server
+│   ├── index.js              # Main server with Socket.io
+│   ├── roomManager.js        # Room/lobby management
+│   ├── gameLogic.js          # Game mechanics and logic
+│   ├── recipes.js            # Korean recipe definitions
+│   └── package.json
+├── client/                    # React frontend
+│   ├── src/
+│   │   ├── components/       # React components
+│   │   │   ├── HomePage.jsx
+│   │   │   ├── LobbyScreen.jsx
+│   │   │   ├── GameScreen.jsx
+│   │   │   ├── OrderDisplay.jsx
+│   │   │   ├── WorkArea.jsx
+│   │   │   ├── PlayerInventory.jsx
+│   │   │   └── ...
+│   │   ├── context/          # Game state context
+│   │   │   └── GameContext.jsx
+│   │   ├── styles/           # CSS modules
+│   │   ├── utils/            # Helper functions
+│   │   │   └── ingredientData.js
+│   │   ├── assets/           # Korean cultural assets
+│   │   │   ├── images/
+│   │   │   ├── sounds/
+│   │   │   └── fonts/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── index.html
+│   ├── vite.config.js
+│   └── package.json
+└── README.md</code></pre>
+</section>
+<section id="korean-dishes" class="level2">
+<h2 class="anchored" data-anchor-id="korean-dishes">🍚 Korean Dishes</h2>
+<section id="easy-dishes-100-points" class="level3">
+<h3 class="anchored" data-anchor-id="easy-dishes-100-points">Easy Dishes (100 points)</h3>
+<ul>
+<li><strong>Bibimbap (비빔밥)</strong>: Mixed rice with vegetables, beef, and egg</li>
+<li><strong>Kimbap (김밥)</strong>: Seaweed rice rolls</li>
+</ul>
+</section>
+<section id="medium-dishes-140-160-points" class="level3">
+<h3 class="anchored" data-anchor-id="medium-dishes-140-160-points">Medium Dishes (140-160 points)</h3>
+<ul>
+<li><strong>Kimchi Jjigae (김치찌개)</strong>: Kimchi stew with pork and tofu</li>
+<li><strong>Tteokbokki (떡볶이)</strong>: Spicy rice cakes with fish cake</li>
+<li><strong>Japchae (잡채)</strong>: Stir-fried glass noodles with vegetables</li>
+<li><strong>Bulgogi (불고기)</strong>: Marinated beef BBQ</li>
+</ul>
+</section>
+</section>
+<section id="technical-details" class="level2">
+<h2 class="anchored" data-anchor-id="technical-details">🔧 Technical Details</h2>
+<section id="technologies-used" class="level3">
+<h3 class="anchored" data-anchor-id="technologies-used">Technologies Used</h3>
+<p><strong>Frontend:</strong> - React 18 with hooks - React Router for navigation - Socket.io Client for real-time communication - CSS Modules for styling - Vite for fast development</p>
+<p><strong>Backend:</strong> - Node.js with Express - Socket.io for WebSocket communication - ES6 modules</p>
+</section>
+<section id="architecture" class="level3">
+<h3 class="anchored" data-anchor-id="architecture">Architecture</h3>
+<ul>
+<li><strong>Client-Server Model</strong>: Centralized server maintains authoritative game state</li>
+<li><strong>WebSocket Communication</strong>: Real-time bidirectional updates</li>
+<li><strong>Circular Player Topology</strong>: Players arranged in a circle, can pass to left/right neighbors</li>
+<li><strong>State Synchronization</strong>: Server broadcasts state updates to all clients on every change</li>
+</ul>
+</section>
+<section id="key-game-mechanics" class="level3">
+<h3 class="anchored" data-anchor-id="key-game-mechanics">Key Game Mechanics</h3>
+<ol type="1">
+<li><strong>Ingredient Distribution</strong>: Fair random distribution ensuring collaboration is required</li>
+<li><strong>Order Generation</strong>: Difficulty scales with round number</li>
+<li><strong>Timer Management</strong>: Server-authoritative with client interpolation</li>
+<li><strong>Validation</strong>: Server validates all dish submissions</li>
+</ol>
+</section>
+</section>
+<section id="customization" class="level2">
+<h2 class="anchored" data-anchor-id="customization">🎨 Customization</h2>
+<section id="adding-custom-assets" class="level3">
+<h3 class="anchored" data-anchor-id="adding-custom-assets">Adding Custom Assets</h3>
+<p>The game is set up to support custom Korean cultural assets. Add your files to:</p>
+<pre><code>client/src/assets/
+├── images/
+│   ├── ingredients/       # PNG/SVG ingredient icons
+│   ├── dishes/            # Completed dish images
+│   └── backgrounds/       # Kitchen backgrounds
+├── sounds/
+│   ├── fx/                # Cooking sounds, passing effects
+│   └── music/             # Background music
+└── fonts/
+    └── korean/            # Korean typography</code></pre>
+<p>Currently, the game uses emoji placeholders for ingredients. To use custom images, update the <code>ingredientData.js</code> file to reference image paths instead of emoji.</p>
+</section>
+</section>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">🐛 Troubleshooting</h2>
+<section id="server-wont-start" class="level3">
+<h3 class="anchored" data-anchor-id="server-wont-start">Server won’t start</h3>
+<ul>
+<li>Make sure you’re in the <code>server</code> directory</li>
+<li>Run <code>npm install</code> to install dependencies</li>
+<li>Check that port 3001 is not in use</li>
+</ul>
+</section>
+<section id="client-wont-connect" class="level3">
+<h3 class="anchored" data-anchor-id="client-wont-connect">Client won’t connect</h3>
+<ul>
+<li>Ensure the server is running first</li>
+<li>Check that both are using the correct ports (client: 5173, server: 3001)</li>
+<li>Clear browser cache and reload</li>
+</ul>
+</section>
+<section id="players-cant-join-room" class="level3">
+<h3 class="anchored" data-anchor-id="players-cant-join-room">Players can’t join room</h3>
+<ul>
+<li>Verify room code is entered correctly (case-sensitive)</li>
+<li>Make sure room is in lobby state (not already in game)</li>
+<li>Check that room isn’t full (8 player max)</li>
+</ul>
+</section>
+<section id="game-lags-or-disconnects" class="level3">
+<h3 class="anchored" data-anchor-id="game-lags-or-disconnects">Game lags or disconnects</h3>
+<ul>
+<li>Check network connection</li>
+<li>Ensure server isn’t overloaded</li>
+<li>For production use, deploy to proper hosting with good network infrastructure</li>
+</ul>
+</section>
+</section>
+<section id="future-enhancements-not-in-mvp" class="level2">
+<h2 class="anchored" data-anchor-id="future-enhancements-not-in-mvp">🚀 Future Enhancements (Not in MVP)</h2>
+<ul>
+<li>Achievement system and player statistics</li>
+<li>Special game modes (Pojangmacha Rush, Kimjang Festival)</li>
+<li>Unlockable content (new dishes, kitchen themes)</li>
+<li>Mobile responsiveness</li>
+<li>Voice chat integration</li>
+<li>Leaderboards</li>
+<li>More Korean dishes and ingredients</li>
+<li>Royal court cuisine (궁중음식) difficulty tier</li>
+</ul>
+</section>
+<section id="license" class="level2">
+<h2 class="anchored" data-anchor-id="license">📝 License</h2>
+<p>MIT License - Feel free to use and modify for your projects!</p>
+</section>
+<section id="acknowledgments" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgments">🙏 Acknowledgments</h2>
+<ul>
+<li>Korean cuisine and cultural elements</li>
+<li>Inspired by cooperative party games like Overcooked</li>
+<li>Built with love for Korean food! 🇰🇷</li>
+</ul>
+<hr>
+<p><strong>Enjoy cooking together! 화이팅! (Fighting!)</strong></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
