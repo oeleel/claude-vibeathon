@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useGame } from '../context/GameContext';
 import { getIngredient } from '../utils/ingredientData';
 import styles from '../styles/CalibrationScreen.module.css';
 
 function CalibrationScreen() {
+  const navigate = useNavigate();
   const { room, playerId, socket } = useGame();
   const [leftIngredient, setLeftIngredient] = useState(null);
   const [rightIngredient, setRightIngredient] = useState(null);
@@ -15,6 +17,13 @@ function CalibrationScreen() {
 
   const availableIngredients = room?.calibrationIngredients || [];
   const playerCount = room?.players.length || 0;
+
+  // Navigate to game when it starts
+  useEffect(() => {
+    if (room?.gameState === 'active') {
+      navigate('/game');
+    }
+  }, [room?.gameState, navigate]);
 
   useEffect(() => {
     if (leftIngredient && rightIngredient) {
