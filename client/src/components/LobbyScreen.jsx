@@ -17,11 +17,13 @@ function LobbyScreen() {
 
     // Navigate to calibration phase
     if (room.gameState === 'calibration') {
+      console.log('Navigating to calibration from lobby');
       navigate('/calibration');
     }
 
-    // Navigate to game when it starts
+    // Navigate to game when it starts (2 players skip calibration)
     if (room.gameState === 'active') {
+      console.log('Navigating to game from lobby');
       navigate('/game');
     }
   }, [room, navigate]);

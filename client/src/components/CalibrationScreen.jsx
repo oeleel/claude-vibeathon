@@ -18,9 +18,10 @@ function CalibrationScreen() {
   const availableIngredients = room?.calibrationIngredients || [];
   const playerCount = room?.players.length || 0;
 
-  // Navigate to game when it starts
+  // Navigate to game when it starts (after calibration complete)
   useEffect(() => {
     if (room?.gameState === 'active') {
+      console.log('Calibration complete, navigating to game...');
       navigate('/game');
     }
   }, [room?.gameState, navigate]);
@@ -157,9 +158,15 @@ function CalibrationScreen() {
       </div>
 
       {allPlayersReady && isHost && (
-        <button className={styles.startGameButton} onClick={() => {
-          socket.emit('start-calibrated-game', { roomCode: room.roomCode });
-        }}>
+        <button 
+          className={styles.startGameButton} 
+          onClick={() => {
+            console.log('Host starting calibrated game...');
+            if (socket && room) {
+              socket.emit('start-calibrated-game', { roomCode: room.roomCode });
+            }
+          }}
+        >
           🎮 Start Game!
         </button>
       )}

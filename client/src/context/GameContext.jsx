@@ -78,11 +78,13 @@ export const GameProvider = ({ children }) => {
 
     // Game events
     newSocket.on('calibration-started', (gameRoom) => {
+      console.log('Calibration started event received', gameRoom);
       setRoom(gameRoom);
       addNotification('Setup phase - identify your neighbors!', 'info');
     });
 
     newSocket.on('game-started', (gameRoom) => {
+      console.log('Game started event received', gameRoom);
       setRoom(gameRoom);
       addNotification('Game started! 화이팅!', 'success');
     });
