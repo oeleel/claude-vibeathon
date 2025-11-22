@@ -2,6 +2,7 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
+import { v4 as uuidv4 } from 'uuid';
 import RoomManager from './roomManager.js';
 import GameLogic from './gameLogic.js';
 
@@ -368,6 +369,51 @@ io.on('connection', (socket) => {
     room.playerIngredients[socket.id] = playerIngredients.filter(i => i.id !== ingredientId);
 
     console.log(`${room.players.find(p => p.id === socket.id)?.name} discarded ingredient ${ingredient.ingredientId}`);
+    broadcastRoomState(roomCode);
+  });
+
+  // Disassemble dish (double-click on assembled plate)
+  socket.on('disassemble-dish', (data) => {
+    const { roomCode, ingredientId } = data;
+    const room = roomManager.getRoom(roomCode);
+    
+    if (!room) return;
+
+    const playerIngredients = room.playerIngredients[socket.id] || [];
+    const plateIngredient = playerIngredients.find(i => i.id === ingredientId);
+    
+    if (!plateIngredient || !plateIngredient.combinedWith || plateIngredient.combinedWith.length === 0) {
+      socket.emit('error', { message: 'Not a combined dish or ingredient not found' });
+      return;
+    }
+
+    // Get all ingredients from the plate
+    const allIngredients = [plateIngredient.ingredientId, ...plateIngredient.combinedWith];
+    
+    // Remove the plate
+    room.playerIngredients[socket.id] = playerIngredients.filter(i => i.id !== ingredientId);
+
+    // Create individual ingredients from the disassembled plate
+    allIngredients.forEach((ingId, index) => {
+      const newIngredient = {
+        id: uuidv4(),
+        ingredientId: ingId,
+        ownerId: socket.id,
+        x: (plateIngredient.x + (index * 5)) % 90, // Spread them out a bit
+        y: (plateIngredient.y + (index * 3)) % 90,
+        combinedWith: []
+      };
+      room.playerIngredients[socket.id].push(newIngredient);
+    });
+
+    const playerName = room.players.find(p => p.id === socket.id)?.name;
+    console.log(`${playerName} disassembled a dish with ${allIngredients.length} ingredients`);
+    
+    io.to(roomCode).emit('dish-disassembled', {
+      playerId: socket.id,
+      ingredientCount: allIngredients.length
+    });
+    
     broadcastRoomState(roomCode);
   });
 

@@ -5,7 +5,7 @@ import { getIngredient } from '../utils/ingredientData';
 import styles from '../styles/FloatingIngredients.module.css';
 
 function FloatingIngredients({ ingredients, onCombine, onServe }) {
-  const { playerId, room } = useGame();
+  const { playerId, room, disassembleDish } = useGame();
   const { getPlayerNeighbors } = useIngredientSharing();
   const [draggingId, setDraggingId] = useState(null);
   const [dragOverId, setDragOverId] = useState(null);
@@ -43,6 +43,14 @@ function FloatingIngredients({ ingredients, onCombine, onServe }) {
     setDragOverId(null);
   };
 
+  const handleDoubleClick = (ingredient) => {
+    // Only allow disassembly if it's a plate (has combined ingredients)
+    const combinedCount = (ingredient.combinedWith || []).length;
+    if (combinedCount > 0 && disassembleDish) {
+      disassembleDish(ingredient.id);
+    }
+  };
+
   const neighbors = getPlayerNeighbors();
   const isTwoPlayer = room?.players.length === 2;
 
@@ -75,7 +83,8 @@ function FloatingIngredients({ ingredients, onCombine, onServe }) {
             onDragOver={(e) => handleDragOver(e, ingredient)}
             onDragLeave={handleDragLeave}
             onDrop={(e) => handleDrop(e, ingredient)}
-            title={`${ingredientData.nameKR} (${ingredientData.nameEN})${combinedCount > 0 ? ` + ${combinedCount} more` : ''}`}
+            onDoubleClick={() => handleDoubleClick(ingredient)}
+            title={`${ingredientData.nameKR} (${ingredientData.nameEN})${combinedCount > 0 ? ` + ${combinedCount} more - Double-click to disassemble` : ''}`}
           >
             {isPlate ? (
               <div className={styles.plateView}>

@@ -217,6 +217,14 @@ export const GameProvider = ({ children }) => {
     });
   }, [socket, room]);
 
+  const disassembleDish = useCallback((ingredientId) => {
+    if (!socket || !room) return;
+    socket.emit('disassemble-dish', {
+      roomCode: room.roomCode,
+      ingredientId
+    });
+  }, [socket, room]);
+
   const value = {
     socket,
     connected,
@@ -230,6 +238,7 @@ export const GameProvider = ({ children }) => {
     toggleReady,
     startGame,
     continueRound,
+    disassembleDish,
     clearError: () => setError(null)
   };
 
