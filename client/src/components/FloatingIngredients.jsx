@@ -5,7 +5,7 @@ import { getIngredient } from '../utils/ingredientData';
 import styles from '../styles/FloatingIngredients.module.css';
 
 function FloatingIngredients({ ingredients, onCombine, onServe }) {
-  const { playerId, room } = useGame();
+  const { playerId, room, socket } = useGame();
   const { getPlayerNeighbors } = useIngredientSharing();
   const [draggingId, setDraggingId] = useState(null);
   const [dragOverId, setDragOverId] = useState(null);
@@ -43,6 +43,26 @@ function FloatingIngredients({ ingredients, onCombine, onServe }) {
     setDragOverId(null);
   };
 
+  // NEW: Handle click on a plate to break it up
+  const handlePlateClick = (e, ingredient) => {
+    e.stopPropagation(); // Prevent drag from starting
+    
+    const combinedCount = (ingredient.combinedWith || []).length;
+    const isPlate = combinedCount > 0;
+    
+    if (!isPlate) return; // Only plates can be broken
+    
+    // Confirm with user
+    if (window.confirm(`Break up this dish into ${combinedCount + 1} separate ingredients?`)) {
+      if (socket && room) {
+        socket.emit('break-dish', {
+          roomCode: room.roomCode,
+          ingredientId: ingredient.id
+        });
+      }
+    }
+  };
+
   const neighbors = getPlayerNeighbors();
   const isTwoPlayer = room?.players.length === 2;
 
@@ -75,7 +95,11 @@ function FloatingIngredients({ ingredients, onCombine, onServe }) {
             onDragOver={(e) => handleDragOver(e, ingredient)}
             onDragLeave={handleDragLeave}
             onDrop={(e) => handleDrop(e, ingredient)}
-            title={`${ingredientData.nameKR} (${ingredientData.nameEN})${combinedCount > 0 ? ` + ${combinedCount} more` : ''}`}
+            onClick={(e) => isPlate && handlePlateClick(e, ingredient)}
+            title={isPlate ? 
+              `${ingredientData.nameKR} (${ingredientData.nameEN}) + ${combinedCount} more\nClick to break apart` :
+              `${ingredientData.nameKR} (${ingredientData.nameEN})`
+            }
           >
             {isPlate ? (
               <div className={styles.plateView}>
@@ -97,6 +121,9 @@ function FloatingIngredients({ ingredients, onCombine, onServe }) {
                 <div className={styles.plateLabel}>
                   {combinedCount + 1} items
                 </div>
+                <div className={styles.breakHint}>
+                  Click to break apart
+                </div>
               </div>
             ) : (
               <>
@@ -116,4 +143,3 @@ function FloatingIngredients({ ingredients, onCombine, onServe }) {
 }
 
 export default FloatingIngredients;
-

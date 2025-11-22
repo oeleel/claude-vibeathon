@@ -76,10 +76,16 @@
 .ingredient.plate {
   transform: scale(1.3);
   z-index: 50;
+  cursor: pointer; /* Changed from grab to pointer for clickable plates */
 }
 
 .ingredient.plate:hover {
   transform: scale(1.4) translateY(-5px);
+}
+
+.ingredient.plate:hover .breakHint {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @keyframes float {
@@ -121,6 +127,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  position: relative;
 }
 
 .plateIcon {
@@ -165,3 +172,45 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* NEW: Break hint styling */
+.breakHint {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  background: var(--warning-yellow);
+  color: var(--korean-black);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  animation: gentleBounce 2s ease-in-out infinite;
+}
+
+@keyframes gentleBounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-3px);
+  }
+}
+
+/* Make plates more visually distinct as clickable */
+.ingredient.plate .plateIcon {
+  animation: plateGlow 2s ease-in-out infinite;
+}
+
+@keyframes plateGlow {
+  0%, 100% {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 4px 12px rgba(244, 162, 97, 0.6));
+  }
+}
