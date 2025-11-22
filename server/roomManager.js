@@ -28,10 +28,15 @@ class RoomManager {
         position: 0,
         inventory: [],
         connected: true,
-        ready: false
+        ready: false,
+        calibrationIngredient: null,
+        calibrationComplete: false,
+        leftIngredient: null,
+        rightIngredient: null
       }],
+      calibrationIngredients: [], // Assigned during game start
       activeOrders: [],
-      currentAssemblies: {}, // playerId -> {ingredients: [], targetOrderId: null}
+      playerIngredients: {}, // playerId -> [{id, ingredientId, x, y, ownerId, combinedWith}]
       round: 0,
       teamScore: 0,
       lives: 3,
@@ -74,7 +79,11 @@ class RoomManager {
       position,
       inventory: [],
       connected: true,
-      ready: false
+      ready: false,
+      calibrationIngredient: null,
+      calibrationComplete: false,
+      leftIngredient: null,
+      rightIngredient: null
     });
 
     console.log(`Player joined: ${playerName} in room ${roomCode} at position ${position}`);

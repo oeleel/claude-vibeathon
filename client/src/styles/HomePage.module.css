@@ -114,6 +114,12 @@
   transition: all 0.2s;
 }
 
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
 .primaryButton {
   background: var(--korean-red);
   color: white;

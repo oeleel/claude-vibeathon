@@ -43,13 +43,13 @@ function PlayerInventory({ player, neighbors }) {
   };
 
   const handleIngredientClick = (ingredientId) => {
-    if (selectedIngredient === ingredientId) {
-      // Double-click to add to assembly
-      addToAssembly(ingredientId);
-      setSelectedIngredient(null);
-    } else {
-      setSelectedIngredient(ingredientId);
-    }
+    setSelectedIngredient(ingredientId);
+  };
+
+  const handleIngredientDoubleClick = (ingredientId) => {
+    // Double-click to add to assembly
+    addToAssembly(ingredientId);
+    setSelectedIngredient(null);
   };
 
   if (!player) {
@@ -83,9 +83,10 @@ function PlayerInventory({ player, neighbors }) {
                 key={`${ingredientId}-${idx}`}
                 className={`${styles.ingredientCard} ${isSelected ? styles.selected : ''} ${passingAnimation ? styles.passing : ''}`}
                 onClick={() => handleIngredientClick(ingredientId)}
+                onDoubleClick={() => handleIngredientDoubleClick(ingredientId)}
                 draggable
                 onDragStart={(e) => handleDragStart(e, ingredientId)}
-                title={`${ingredient.nameKR} (${ingredient.nameEN})\nClick to select, double-click to add to plate`}
+                title={`${ingredient.nameKR} (${ingredient.nameEN})\nClick to select • Double-click to add to dish • Drag to combine`}
               >
                 <div className={styles.ingredientEmoji}>{ingredient.emoji}</div>
                 <div className={styles.ingredientNames}>

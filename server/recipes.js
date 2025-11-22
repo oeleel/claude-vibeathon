@@ -39,17 +39,17 @@ export const ingredients = {
   fishCake: { id: 'fishCake', nameKR: '어묵', nameEN: 'Fish Cake', emoji: '🍥', category: 'processed' }
 };
 
-// Korean recipe definitions
+// Korean recipe definitions - simplified to max 4 ingredients for fast-paced gameplay
 export const recipes = {
   bibimbap: {
     id: 'bibimbap',
     nameKR: '비빔밥',
     nameEN: 'Bibimbap',
     difficulty: 'easy',
-    ingredients: ['rice', 'beef', 'spinach', 'beanSprouts', 'carrot', 'egg', 'gochujang'],
-    baseTime: 60,
+    ingredients: ['rice', 'beef', 'egg', 'gochujang'],
+    baseTime: 40,
     points: 100,
-    description: 'Mixed rice with vegetables and meat'
+    description: 'Mixed rice with beef and egg'
   },
   
   kimbap: {
@@ -57,8 +57,8 @@ export const recipes = {
     nameKR: '김밥',
     nameEN: 'Kimbap',
     difficulty: 'easy',
-    ingredients: ['rice', 'seaweed', 'egg', 'carrot', 'spinach', 'radish'],
-    baseTime: 55,
+    ingredients: ['rice', 'seaweed', 'egg', 'carrot'],
+    baseTime: 40,
     points: 100,
     description: 'Seaweed rice rolls'
   },
@@ -68,9 +68,9 @@ export const recipes = {
     nameKR: '김치찌개',
     nameEN: 'Kimchi Jjigae',
     difficulty: 'medium',
-    ingredients: ['kimchi', 'porkBelly', 'tofu', 'onion', 'gochugaru', 'anchovyBroth'],
-    baseTime: 50,
-    points: 150,
+    ingredients: ['kimchi', 'porkBelly', 'tofu', 'gochugaru'],
+    baseTime: 35,
+    points: 120,
     description: 'Kimchi stew'
   },
   
@@ -79,9 +79,9 @@ export const recipes = {
     nameKR: '떡볶이',
     nameEN: 'Tteokbokki',
     difficulty: 'medium',
-    ingredients: ['tteok', 'fishCake', 'gochujang', 'gochugaru', 'onion', 'greenOnion'],
-    baseTime: 50,
-    points: 140,
+    ingredients: ['tteok', 'fishCake', 'gochujang', 'onion'],
+    baseTime: 35,
+    points: 120,
     description: 'Spicy rice cakes'
   },
   
@@ -90,10 +90,10 @@ export const recipes = {
     nameKR: '잡채',
     nameEN: 'Japchae',
     difficulty: 'medium',
-    ingredients: ['dangmyeon', 'beef', 'spinach', 'carrot', 'mushroom', 'onion', 'sesameOil', 'soySauce'],
-    baseTime: 45,
-    points: 160,
-    description: 'Stir-fried glass noodles'
+    ingredients: ['dangmyeon', 'beef', 'spinach', 'sesameOil'],
+    baseTime: 35,
+    points: 130,
+    description: 'Glass noodles'
   },
   
   bulgogi: {
@@ -101,10 +101,10 @@ export const recipes = {
     nameKR: '불고기',
     nameEN: 'Bulgogi',
     difficulty: 'medium',
-    ingredients: ['beef', 'soySauce', 'garlic', 'sesameOil', 'onion', 'mushroom'],
-    baseTime: 50,
-    points: 150,
-    description: 'Marinated beef BBQ'
+    ingredients: ['beef', 'soySauce', 'garlic', 'onion'],
+    baseTime: 35,
+    points: 120,
+    description: 'Marinated beef'
   }
 };
 
