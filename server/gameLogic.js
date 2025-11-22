@@ -5,32 +5,78 @@ class GameLogic {
     this.UPDATE_INTERVAL = 1000; // Update timers every second
   }
 
-  // Distribute ingredients fairly among players
-  distributeIngredients(players, round) {
+  // Distribute ingredients to individual players (not visible to all)
+  distributeIngredientsToPlayers(room, orders, round) {
     const allIngredients = getAllIngredientIds();
-    const numPlayers = players.length;
+    const playerCount = room.players.length;
     
-    // Determine how many ingredients each player gets based on round
-    let ingredientsPerPlayer = Math.min(8, 5 + Math.floor(round / 2));
-    
-    // Shuffle ingredients
-    const shuffled = [...allIngredients].sort(() => Math.random() - 0.5);
-    
-    // Distribute to players
-    players.forEach((player, index) => {
-      const startIdx = (index * ingredientsPerPlayer) % shuffled.length;
-      const playerIngredients = [];
-      
-      for (let i = 0; i < ingredientsPerPlayer; i++) {
-        const ingredientId = shuffled[(startIdx + i) % shuffled.length];
-        playerIngredients.push(ingredientId);
-      }
-      
-      player.inventory = playerIngredients;
+    // Get all ingredients needed for current orders
+    const neededIngredients = [];
+    orders.forEach(order => {
+      order.requiredIngredients.forEach(ing => {
+        neededIngredients.push(ing);
+      });
     });
     
-    console.log('Ingredients distributed to players');
-    return players;
+    // Add extra random ingredients based on round (chaos increases)
+    let extraPercent = 0;
+    if (round >= 3) extraPercent = 0.25; // 25% extra from round 3
+    if (round >= 5) extraPercent = 0.5;  // 50% extra from round 5
+    if (round >= 7) extraPercent = 0.75; // 75% extra from round 7
+    
+    const extraCount = Math.floor(neededIngredients.length * extraPercent);
+    for (let i = 0; i < extraCount; i++) {
+      const randomIng = allIngredients[Math.floor(Math.random() * allIngredients.length)];
+      neededIngredients.push(randomIng);
+    }
+    
+    // Shuffle and distribute to players
+    const shuffled = [...neededIngredients].sort(() => Math.random() - 0.5);
+    
+    // Assign ingredients to specific players
+    const playerIngredients = {};
+    room.players.forEach(player => {
+      playerIngredients[player.id] = [];
+    });
+    
+    shuffled.forEach((ingredientId, idx) => {
+      const playerId = room.players[idx % playerCount].id;
+      playerIngredients[playerId].push({
+        id: `ingredient_${Date.now()}_${idx}`,
+        ingredientId,
+        x: Math.random() * 80 + 10, // 10-90% across screen
+        y: Math.random() * 60 + 20, // 20-80% down screen
+        ownerId: playerId, // Who this ingredient belongs to / can see
+        combinedWith: [] // array of ingredient IDs this has been combined with
+      });
+    });
+    
+    console.log(`Distributed ${shuffled.length} ingredients across ${playerCount} players (${neededIngredients.length - extraCount} needed + ${extraCount} chaos)`);
+    return playerIngredients;
+  }
+  
+  // Track progress on each order
+  updateOrderProgress(order, currentIngredients) {
+    const completed = [...currentIngredients].sort();
+    const required = [...order.requiredIngredients].sort();
+    
+    // Find how many match so far
+    let matchCount = 0;
+    for (let i = 0; i < Math.min(completed.length, required.length); i++) {
+      if (completed[i] === required[i]) {
+        matchCount++;
+      }
+    }
+    
+    // Determine next ingredient needed
+    const nextIngredient = required[matchCount] || null;
+    
+    return {
+      completed: matchCount,
+      total: required.length,
+      nextIngredient,
+      isComplete: matchCount === required.length && completed.length === required.length
+    };
   }
 
   // Generate orders for a round
@@ -85,60 +131,61 @@ class GameLogic {
     // Generate orders
     const orders = this.generateOrders(newRound);
     
-    // Distribute ingredients
-    this.distributeIngredients(room.players, newRound);
-    
-    // Reset current assemblies
-    const currentAssemblies = {};
-    room.players.forEach(player => {
-      currentAssemblies[player.id] = {
-        ingredients: [],
-        targetOrderId: null
-      };
-    });
+    // Distribute ingredients to individual players
+    const playerIngredients = this.distributeIngredientsToPlayers(room, orders, newRound);
     
     return {
       round: newRound,
       activeOrders: orders,
-      currentAssemblies,
+      playerIngredients, // Map of playerId -> array of ingredients
       gameState: 'active'
     };
   }
 
-  // Validate a completed dish
-  validateDish(assembledIngredients, orderId, room) {
-    const order = room.activeOrders.find(o => o.id === orderId);
-    
-    if (!order) {
-      return { valid: false, error: 'Order not found' };
-    }
-    
+  // Validate a completed dish against all active orders
+  validateDish(assembledIngredients, room) {
     // Check if all required ingredients are present
-    const required = [...order.requiredIngredients].sort();
     const assembled = [...assembledIngredients].sort();
     
-    if (required.length !== assembled.length) {
-      return { valid: false, error: 'Wrong number of ingredients' };
-    }
-    
-    for (let i = 0; i < required.length; i++) {
-      if (required[i] !== assembled[i]) {
-        return { valid: false, error: 'Wrong ingredients' };
+    // Try to match against any active order
+    for (const order of room.activeOrders) {
+      const required = [...order.requiredIngredients].sort();
+      
+      // Check if lengths match
+      if (required.length !== assembled.length) {
+        continue;
+      }
+      
+      // Check if all ingredients match
+      let matches = true;
+      for (let i = 0; i < required.length; i++) {
+        if (required[i] !== assembled[i]) {
+          matches = false;
+          break;
+        }
+      }
+      
+      if (matches) {
+        // Calculate score with time bonus
+        let score = order.points;
+        const timeRemainingPercent = order.timeRemaining / order.maxTime;
+        
+        if (timeRemainingPercent > 0.5) {
+          score = Math.floor(score * 1.2); // 20% bonus for fast completion
+        }
+        
+        return {
+          valid: true,
+          score,
+          order
+        };
       }
     }
     
-    // Calculate score with time bonus
-    let score = order.points;
-    const timeRemainingPercent = order.timeRemaining / order.maxTime;
-    
-    if (timeRemainingPercent > 0.5) {
-      score = Math.floor(score * 1.2); // 20% bonus for fast completion
-    }
-    
-    return {
-      valid: true,
-      score,
-      order
+    // No matching order found
+    return { 
+      valid: false, 
+      error: 'No matching order for these ingredients' 
     };
   }
 
@@ -227,6 +274,11 @@ class GameLogic {
       success: true,
       assembly
     };
+  }
+
+  // Get all ingredient IDs (for external use)
+  getAllIngredientIds() {
+    return getAllIngredientIds();
   }
 
   // Update timers and check for expired orders

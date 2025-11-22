@@ -15,6 +15,11 @@ function LobbyScreen() {
       return;
     }
 
+    // Navigate to calibration phase
+    if (room.gameState === 'calibration') {
+      navigate('/calibration');
+    }
+
     // Navigate to game when it starts
     if (room.gameState === 'active') {
       navigate('/game');

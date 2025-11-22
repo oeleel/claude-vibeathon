@@ -5,159 +5,154 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
 .title {
   font-size: 1.3rem;
   color: var(--korean-black);
-  margin-bottom: 16px;
-  text-align: center;
 }
 
-.orderSelection {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-  justify-content: center;
-}
-
-.orderSelection label {
+.hint {
+  color: var(--korean-red);
   font-weight: 600;
-  color: var(--korean-black);
+  font-size: 0.9rem;
+  animation: bounce 2s ease-in-out infinite;
 }
 
-.orderSelect {
-  padding: 10px 16px;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
-  background: white;
-  cursor: pointer;
-  min-width: 250px;
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
-.orderSelect:focus {
-  border-color: var(--korean-red);
-  outline: none;
-}
-
-.plate {
+.dishContainer {
   min-height: 200px;
   background: linear-gradient(135deg, #FFF8E1 0%, #FFE0B2 100%);
   border: 3px dashed #d0d0d0;
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 24px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 16px;
   transition: all 0.3s;
+  cursor: grab;
+  position: relative;
 }
 
-.plateHover {
-  border-color: var(--korean-red);
-  background: linear-gradient(135deg, #ffe8e8 0%, #ffd0d0 100%);
+.dishContainer:active {
+  cursor: grabbing;
+}
+
+.dishContainer.dragOver {
+  border-color: var(--korean-blue);
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
   transform: scale(1.02);
 }
 
-.plateActive {
-  border-style: solid;
-  border-color: var(--korean-green);
+.dishContainer.dragging {
+  opacity: 0.5;
+  transform: rotate(2deg);
 }
 
-.plateEmpty {
+.containerIcon {
+  font-size: 3rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.emptyState {
   text-align: center;
   color: #999;
 }
 
-.plateEmpty p:first-child {
+.emptyState p:first-child {
   font-size: 1.2rem;
   margin-bottom: 8px;
+  font-weight: 600;
 }
 
-.plateHint {
+.subtext {
   font-size: 0.9rem;
   font-style: italic;
 }
 
-.assemblyGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 12px;
+.ingredientsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
   width: 100%;
 }
 
-.assembledIngredient {
+.ingredientChip {
   background: white;
   border: 2px solid var(--korean-green);
-  border-radius: 12px;
-  padding: 12px;
+  border-radius: 20px;
+  padding: 8px 16px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
   transition: all 0.2s;
   position: relative;
 }
 
-.assembledIngredient:hover {
+.ingredientChip:hover {
   border-color: var(--danger-red);
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.assembledIngredient:hover .removeHint {
+.ingredientChip:hover .chipRemove {
   opacity: 1;
 }
 
-.assembledEmoji {
-  font-size: 2rem;
+.chipEmoji {
+  font-size: 1.3rem;
 }
 
-.assembledName {
-  font-size: 0.8rem;
+.chipName {
+  font-size: 0.9rem;
   color: #333;
   font-weight: 600;
-  text-align: center;
 }
 
-.removeHint {
-  position: absolute;
-  top: 4px;
-  right: 4px;
+.chipRemove {
   background: var(--danger-red);
   color: white;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   opacity: 0;
   transition: opacity 0.2s;
+  margin-left: 4px;
 }
 
-.submitButton {
-  width: 100%;
-  padding: 16px;
-  background: var(--korean-red);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 1.2rem;
-  font-weight: 700;
-  cursor: pointer;
+.instructions {
   margin-top: 16px;
-  transition: all 0.2s;
-  box-shadow: 0 4px 6px rgba(230, 57, 70, 0.3);
+  padding: 16px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  border-left: 4px solid var(--korean-blue);
 }
 
-.submitButton:hover {
-  background: #d62839;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(230, 57, 70, 0.4);
+.instructions p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
 }
 
-.submitButton:active {
-  transform: translateY(0);
+.instructions p + p {
+  margin-top: 8px;
 }
 

@@ -1,21 +1,17 @@
 .container {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.title {
-  font-size: 1.3rem;
-  color: var(--korean-black);
-  margin-bottom: 16px;
-  text-align: center;
+  position: sticky;
+  top: 70px;
+  z-index: 40;
+  background: transparent;
+  padding: 0;
 }
 
 .orderList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 .noOrders {
@@ -26,74 +22,51 @@
 }
 
 .orderCard {
-  background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
-  border: 2px solid var(--korean-yellow);
-  border-radius: 12px;
-  padding: 16px;
+  background: white;
+  border: 4px solid var(--korean-red);
+  border-radius: 16px;
+  padding: 16px 20px;
+  min-width: 200px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   transition: all 0.2s;
 }
 
 .orderCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .orderHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   margin-bottom: 12px;
 }
 
 .dishName {
-  flex: 1;
+  text-align: center;
 }
 
 .nameKR {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: var(--korean-red);
-  margin-bottom: 2px;
+  color: var(--korean-black);
 }
 
 .nameEN {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #666;
+  margin-top: 2px;
 }
 
-.points {
-  background: var(--korean-green);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.ingredientsList {
+.ingredientsNeeded {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
-.ingredientItem {
-  background: #f0f0f0;
-  padding: 6px 12px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-}
-
-.ingredientEmoji {
-  font-size: 1.1rem;
-}
-
-.ingredientName {
-  color: #333;
-  font-weight: 500;
+.ingredientIcon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .timerContainer {
@@ -134,7 +107,17 @@
 .timerText {
   text-align: center;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--korean-black);
+}
+
+.noOrders {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 

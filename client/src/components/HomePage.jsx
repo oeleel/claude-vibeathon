@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGame } from '../context/GameContext';
 import styles from '../styles/HomePage.module.css';
 
 function HomePage() {
   const navigate = useNavigate();
-  const { createRoom, joinRoom, connected } = useGame();
+  const { createRoom, joinRoom, connected, room } = useGame();
   const [playerName, setPlayerName] = useState('');
   const [roomCode, setRoomCode] = useState('');
   const [mode, setMode] = useState(null); // 'create' or 'join'
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Navigate to lobby once room is created/joined
+  useEffect(() => {
+    if (room && isSubmitting) {
+      navigate('/lobby');
+      setIsSubmitting(false);
+    }
+  }, [room, isSubmitting, navigate]);
 
   const handleCreateRoom = (e) => {
     e.preventDefault();
-    if (playerName.trim()) {
+    if (playerName.trim() && !isSubmitting) {
+      setIsSubmitting(true);
       createRoom(playerName.trim());
-      navigate('/lobby');
     }
   };
 
   const handleJoinRoom = (e) => {
     e.preventDefault();
-    if (playerName.trim() && roomCode.trim()) {
+    if (playerName.trim() && roomCode.trim() && !isSubmitting) {
+      setIsSubmitting(true);
       joinRoom(roomCode.trim(), playerName.trim());
-      navigate('/lobby');
     }
   };
 
@@ -78,13 +87,18 @@ function HomePage() {
               required
             />
             <div className={styles.formButtons}>
-              <button type="submit" className={`${styles.button} ${styles.primaryButton}`}>
-                Create & Host
+              <button 
+                type="submit" 
+                className={`${styles.button} ${styles.primaryButton}`}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Creating...' : 'Create & Host'}
               </button>
               <button 
                 type="button" 
                 className={`${styles.button} ${styles.backButton}`}
                 onClick={() => setMode(null)}
+                disabled={isSubmitting}
               >
                 Back
               </button>
@@ -114,13 +128,18 @@ function HomePage() {
               required
             />
             <div className={styles.formButtons}>
-              <button type="submit" className={`${styles.button} ${styles.primaryButton}`}>
-                Join Room
+              <button 
+                type="submit" 
+                className={`${styles.button} ${styles.primaryButton}`}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Joining...' : 'Join Room'}
               </button>
               <button 
                 type="button" 
                 className={`${styles.button} ${styles.backButton}`}
                 onClick={() => setMode(null)}
+                disabled={isSubmitting}
               >
                 Back
               </button>

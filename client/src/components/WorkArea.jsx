@@ -1,12 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useGame } from '../context/GameContext';
 import { getIngredient } from '../utils/ingredientData';
+import { getRecipeById } from '../utils/recipeData';
 import styles from '../styles/WorkArea.module.css';
 
 function WorkArea({ assembly, orders }) {
-  const { submitDish, removeFromAssembly, room } = useGame();
-  const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const { submitDish, removeFromAssembly, addToAssembly } = useGame();
   const [dragOver, setDragOver] = useState(false);
+  const [isDraggingDish, setIsDraggingDish] = useState(false);
+  const containerRef = useRef(null);
+
+  // Determine container type based on ingredients
+  const getContainerType = () => {
+    if (assembly.ingredients.length === 0) return 'empty';
+    
+    // Check what dish this might be
+    for (const order of orders) {
+      const recipe = getRecipeById(order.recipeId);
+      if (!recipe) continue;
+      
+      // Check if ingredients so far could be part of this dish
+      const allInRecipe = assembly.ingredients.every(ing => 
+        recipe.ingredients.includes(ing)
+      );
+      
+      if (allInRecipe) {
+        return recipe.container || 'plate';
+      }
+    }
+    
+    return 'plate';
+  };
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -14,7 +38,7 @@ function WorkArea({ assembly, orders }) {
     
     const ingredientId = e.dataTransfer.getData('ingredientId');
     if (ingredientId) {
-      // This will be handled by the inventory component's passthrough
+      addToAssembly(ingredientId);
     }
   };
 
@@ -31,68 +55,71 @@ function WorkArea({ assembly, orders }) {
     removeFromAssembly(ingredientId);
   };
 
-  const handleSubmit = () => {
-    if (!selectedOrderId) {
-      alert('Please select which dish you are making!');
-      return;
-    }
-    
+  // Drag the entire dish to serve
+  const handleDishDragStart = (e) => {
     if (assembly.ingredients.length === 0) {
-      alert('Add ingredients to the plate first!');
+      e.preventDefault();
       return;
     }
-
-    submitDish(selectedOrderId);
-    setSelectedOrderId(null);
+    setIsDraggingDish(true);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('servingDish', 'true');
   };
+
+  const handleDishDragEnd = () => {
+    setIsDraggingDish(false);
+  };
+
+  const containerType = getContainerType();
+  const containerEmoji = {
+    'bowl': '🥣',
+    'plate': '🍽️',
+    'pot': '🍲',
+    'empty': '🍽️'
+  }[containerType] || '🍽️';
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Work Area 🍽️</h2>
-      
-      {orders.length > 0 && (
-        <div className={styles.orderSelection}>
-          <label>Making:</label>
-          <select 
-            value={selectedOrderId || ''} 
-            onChange={(e) => setSelectedOrderId(e.target.value)}
-            className={styles.orderSelect}
-          >
-            <option value="">Select a dish...</option>
-            {orders.map(order => (
-              <option key={order.id} value={order.id}>
-                {order.nameKR} ({order.nameEN})
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
+      <div className={styles.header}>
+        <h2 className={styles.title}>Work Station</h2>
+        {assembly.ingredients.length > 0 && (
+          <div className={styles.hint}>
+            ↑ Drag dish upward to serve! ↑
+          </div>
+        )}
+      </div>
 
       <div 
-        className={`${styles.plate} ${dragOver ? styles.plateHover : ''} ${assembly.ingredients.length > 0 ? styles.plateActive : ''}`}
+        ref={containerRef}
+        className={`${styles.dishContainer} ${dragOver ? styles.dragOver : ''} ${isDraggingDish ? styles.dragging : ''}`}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
+        draggable={assembly.ingredients.length > 0}
+        onDragStart={handleDishDragStart}
+        onDragEnd={handleDishDragEnd}
       >
+        <div className={styles.containerIcon}>{containerEmoji}</div>
+        
         {assembly.ingredients.length === 0 ? (
-          <div className={styles.plateEmpty}>
+          <div className={styles.emptyState}>
             <p>Drag ingredients here</p>
-            <p className={styles.plateHint}>드래그 앤 드롭</p>
+            <p className={styles.subtext}>Combine to create dishes</p>
           </div>
         ) : (
-          <div className={styles.assemblyGrid}>
+          <div className={styles.ingredientsList}>
             {assembly.ingredients.map((ingredientId, idx) => {
               const ingredient = getIngredient(ingredientId);
               return (
                 <div 
                   key={`${ingredientId}-${idx}`} 
-                  className={styles.assembledIngredient}
+                  className={styles.ingredientChip}
                   onClick={() => handleRemoveIngredient(ingredientId)}
                   title="Click to remove"
                 >
-                  <span className={styles.assembledEmoji}>{ingredient.emoji}</span>
-                  <span className={styles.assembledName}>{ingredient.nameEN}</span>
-                  <span className={styles.removeHint}>✕</span>
+                  <span className={styles.chipEmoji}>{ingredient.emoji}</span>
+                  <span className={styles.chipName}>{ingredient.nameEN}</span>
+                  <span className={styles.chipRemove}>✕</span>
                 </div>
               );
             })}
@@ -100,14 +127,10 @@ function WorkArea({ assembly, orders }) {
         )}
       </div>
 
-      {assembly.ingredients.length > 0 && (
-        <button 
-          className={styles.submitButton}
-          onClick={handleSubmit}
-        >
-          ✓ Submit Dish
-        </button>
-      )}
+      <div className={styles.instructions}>
+        <p>💡 <strong>Tip:</strong> Drag ingredients onto the container to combine them</p>
+        <p>💡 Drag the full dish upward to serve when ready!</p>
+      </div>
     </div>
   );
 }

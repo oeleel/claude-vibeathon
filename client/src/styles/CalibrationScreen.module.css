@@ -1,0 +1,327 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 12px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.myIngredient {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.myIngredient h2 {
+  color: var(--korean-black);
+  margin-bottom: 20px;
+}
+
+.ingredientDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, #FFF8E1 0%, #FFE0B2 100%);
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+
+.bigEmoji {
+  font-size: 6rem;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.ingredientName {
+  text-align: center;
+}
+
+.nameKR {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--korean-red);
+  margin-bottom: 4px;
+}
+
+.nameEN {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.instruction {
+  color: #666;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.calibrationForm {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 900px;
+  margin: 0 auto 40px;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.section h3 {
+  color: var(--korean-black);
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.sectionHint {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.playerButtons,
+.ingredientButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.playerButton {
+  padding: 12px 24px;
+  background: #f0f0f0;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.playerButton:hover:not(:disabled) {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.playerButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.playerButton.selected {
+  background: var(--korean-blue);
+  color: white;
+  border-color: var(--korean-blue);
+  box-shadow: 0 4px 12px rgba(69, 123, 157, 0.3);
+}
+
+.ingredientButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: #f9f9f9;
+  border: 3px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 100px;
+}
+
+.ingredientButton:hover:not(:disabled) {
+  border-color: var(--korean-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.ingredientButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.ingredientButton.selected {
+  background: var(--korean-green);
+  border-color: var(--korean-green);
+  box-shadow: 0 6px 16px rgba(42, 157, 143, 0.3);
+}
+
+.ingEmoji {
+  font-size: 3rem;
+}
+
+.ingName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--korean-black);
+  text-align: center;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 20px;
+  background: var(--korean-red);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 20px;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #d62839;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
+}
+
+.submitButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.waiting {
+  background: white;
+  padding: 60px 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.checkmark {
+  font-size: 5rem;
+  color: var(--korean-green);
+  margin-bottom: 20px;
+}
+
+.waiting h2 {
+  color: var(--korean-black);
+  margin-bottom: 12px;
+}
+
+.waiting p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.playerStatus {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.playerStatus h3 {
+  color: var(--korean-black);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.statusList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.statusItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f9f9f9;
+  border-radius: 10px;
+}
+
+.playerName {
+  font-weight: 600;
+  color: var(--korean-black);
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.status.complete {
+  background: var(--korean-green);
+  color: white;
+}
+
+.status.pending {
+  background: #ffa726;
+  color: white;
+}
+
+.startGameButton {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: block;
+  padding: 24px;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+}
+
+.startGameButton:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(76, 175, 80, 0.5);
+}
+
+.waitingForHost {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.waitingForHost p {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+

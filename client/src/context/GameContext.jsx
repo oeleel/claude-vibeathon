@@ -75,6 +75,11 @@ export const GameProvider = ({ children }) => {
     });
 
     // Game events
+    newSocket.on('calibration-started', (gameRoom) => {
+      setRoom(gameRoom);
+      addNotification('Setup phase - identify your neighbors!', 'info');
+    });
+
     newSocket.on('game-started', (gameRoom) => {
       setRoom(gameRoom);
       addNotification('Game started! 화이팅!', 'success');
@@ -103,6 +108,19 @@ export const GameProvider = ({ children }) => {
 
     newSocket.on('ingredient-passed', (data) => {
       // Visual feedback handled in components
+    });
+
+    newSocket.on('ingredient-passed-between-players', (data) => {
+      const { fromPlayerId, toPlayerId, ingredientId, direction } = data;
+      const fromPlayer = room?.players.find(p => p.id === fromPlayerId);
+      const toPlayer = room?.players.find(p => p.id === toPlayerId);
+      
+      if (fromPlayer && toPlayer) {
+        addNotification(
+          `${fromPlayer.name} passed ingredient to ${toPlayer.name}`, 
+          'info'
+        );
+      }
     });
 
     newSocket.on('game-over', (results) => {
@@ -181,11 +199,10 @@ export const GameProvider = ({ children }) => {
     });
   }, [socket, room]);
 
-  const submitDish = useCallback((orderId) => {
+  const submitDish = useCallback(() => {
     if (!socket || !room) return;
     socket.emit('submit-dish', {
-      roomCode: room.roomCode,
-      orderId
+      roomCode: room.roomCode
     });
   }, [socket, room]);
 
@@ -208,10 +225,6 @@ export const GameProvider = ({ children }) => {
     joinRoom,
     toggleReady,
     startGame,
-    passIngredient,
-    addToAssembly,
-    removeFromAssembly,
-    submitDish,
     continueRound,
     clearError: () => setError(null)
   };

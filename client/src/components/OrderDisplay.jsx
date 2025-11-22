@@ -5,11 +5,10 @@ import styles from '../styles/OrderDisplay.module.css';
 function OrderDisplay({ orders }) {
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Active Orders</h2>
       <div className={styles.orderList}>
         {orders.length === 0 && (
           <div className={styles.noOrders}>
-            <p>No active orders</p>
+            <p>Waiting for orders...</p>
           </div>
         )}
         {orders.map(order => (
@@ -34,16 +33,14 @@ function OrderCard({ order }) {
           <div className={styles.nameKR}>{order.nameKR}</div>
           <div className={styles.nameEN}>{order.nameEN}</div>
         </div>
-        <div className={styles.points}>+{order.points}</div>
       </div>
 
-      <div className={styles.ingredientsList}>
+      <div className={styles.ingredientsNeeded}>
         {order.requiredIngredients.map((ingredientId, idx) => {
           const ingredient = getIngredient(ingredientId);
           return (
-            <div key={`${ingredientId}-${idx}`} className={styles.ingredientItem}>
-              <span className={styles.ingredientEmoji}>{ingredient.emoji}</span>
-              <span className={styles.ingredientName}>{ingredient.nameEN}</span>
+            <div key={idx} className={styles.ingredientIcon}>
+              {ingredient.emoji}
             </div>
           );
         })}
@@ -57,7 +54,7 @@ function OrderCard({ order }) {
           />
         </div>
         <div className={styles.timerText}>
-          ⏱️ {Math.max(0, Math.ceil(order.timeRemaining))}s
+          {Math.max(0, Math.ceil(order.timeRemaining))}s
         </div>
       </div>
     </div>
